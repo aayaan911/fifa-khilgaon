@@ -275,8 +275,8 @@ a{color:inherit;text-decoration:none}
 .yt-close{position:absolute;top:-40px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;padding:8px}
 
 /* === FOOTER === */
-.footer{border-top:1px solid var(--border);padding:48px 24px;margin-top:48px;background:var(--card2);backdrop-filter:blur(12px)}
-.footer-inner{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px}
+.footer{border-top:1px solid var(--border);padding:48px 24px;margin-top:48px;background:var(--card2);backdrop-filter:blur(12px);width:100%;box-sizing:border-box}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;width:100%;padding:0}
 @media(min-width:768px){.footer-inner{flex-direction:row;justify-content:space-between}}
 .footer-brand{display:flex;align-items:center;gap:8px}
 .footer-brand svg{color:var(--accent);width:24px;height:24px}
@@ -729,7 +729,8 @@ a{color:inherit;text-decoration:none}
 
 /* --- Footer: wrap links on mobile --- */
 @media(max-width:600px){
-  .footer{padding:32px 16px;margin-top:32px}
+  .footer{padding:32px 16px;margin-top:32px;width:100%;box-sizing:border-box}
+  .footer-inner{padding:0}
   .footer-links{gap:16px;flex-wrap:wrap;justify-content:center}
   .footer-links a{font-size:13px}
   .footer-brand span{font-size:17px}
@@ -1695,11 +1696,11 @@ let activeChannel = defaultChannel;
 
 // ====== HIGHLIGHTS DATA ======
 const HIGHLIGHTS = [
-  {id:'jsXknr6ts0c',title:'HIGHLIGHTS - Sweden v Tunisia | Strike Duo Deliver in Group F | FIFA World Cup 2026',teams:'Sweden vs Tunisia',cat:'Group F',views:'2.8M',date:'Today'},
-  {id:'oE5tRYnN7vw',title:'HIGHLIGHTS - Cote d\'Ivoire v Ecuador | Amad Diallo Late Winner! | FIFA World Cup 2026™',teams:'Ivory Coast vs Ecuador',cat:'Group E',views:'1.7M',date:'Today'},
-  {id:'uGDHa4Ze40g',title:'HIGHLIGHTS - Netherlands v Japan | Late Drama! 2-2 | FIFA World Cup 2026',teams:'Netherlands vs Japan',cat:'Group F',views:'3.1M',date:'Today'},
+  {id:'MWsgrEPIni4',title:'Sweden vs Tunisia Highlights | 5-1 | FIFA World Cup 2026™ | FOX Soccer',teams:'Sweden vs Tunisia',cat:'Group F',views:'2.8M',date:'Today'},
+  {id:'pBk8BjA-X4Y',title:'Ivory Coast vs Ecuador Highlights | 1-0 | FIFA World Cup 2026™ | FOX Soccer',teams:'Ivory Coast vs Ecuador',cat:'Group E',views:'1.7M',date:'Today'},
+  {id:'m7sQP_AZ5vM',title:'Netherlands vs Japan Highlights | 2-2 | FIFA World Cup 2026™ | FOX Soccer',teams:'Netherlands vs Japan',cat:'Group F',views:'3.1M',date:'Today'},
   {id:'xyKJHekC7io',title:'Australia vs Türkiye Highlights | FIFA World Cup 2026',teams:'Australia vs Türkiye',cat:'Group D',views:'2.2M',date:'1 day ago'},
-  {id:'rVabIXAiZQI',title:'HIGHLIGHTS - Germany v Curaçao | Group E Opener! 7-1 | FIFA World Cup 2026',teams:'Germany vs Curaçao',cat:'Group E',views:'3.4M',date:'1 day ago'},
+  {id:'cGKWqfsRDgo',title:'Germany vs Curaçao Highlights | 7-1 | FIFA World Cup 2026™ | FOX Soccer',teams:'Germany vs Curaçao',cat:'Group E',views:'3.4M',date:'1 day ago'},
   {id:'TcCufmPCsu4',title:'Highlights | Haiti 0-1 Scotland | FIFA World Cup 2026™',teams:'Haiti vs Scotland',cat:'Group C',views:'1.4M',date:'1 day ago'},
   {id:'kJ278WtIULw',title:'HIGHLIGHTS - Brazil v Morocco | Two Evenly Matched Sides! | FIFA World Cup 2026',teams:'Brazil vs Morocco',cat:'Group C',views:'3.6M',date:'1 day ago'},
   {id:'BXD1_mhODBU',title:'HIGHLIGHTS - USA v Paraguay | 4-1 Opening Victory! | FIFA World Cup 2026™',teams:'USA vs Paraguay',cat:'Group D',views:'2.1M',date:'2 days ago'},
