@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aayaan911.github.io/fifa-khilgaon/sitemap.xml
