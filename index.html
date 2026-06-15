@@ -127,7 +127,7 @@ a{color:inherit;text-decoration:none}
 @media(max-width:1024px){.main-grid{grid-template-columns:1fr}}
 
 /* === VIDEO PLAYER === */
-.player-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#09090b;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.player-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#09090b;border-radius:8px;overflow:hidden}
 .player-wrap iframe{position:absolute;top:-70px;left:-250px;width:160%;height:calc(100% + 140px);border:none}
 .channel-info{display:flex;align-items:center;justify-content:space-between;padding:16px 0 20px;border-bottom:1px solid rgba(255,255,255,.1);gap:16px}
 .channel-name{min-width:0;flex:1}
@@ -1733,7 +1733,7 @@ const SCHEDULE = {
     {home:'Spain',away:'Cape Verde',score:'0 - 0',status:'FT',stage:'Group H',venue:'Mercedes-Benz Stadium, Atlanta'},
   ],
   '2026-06-16':[
-    {home:'Belgium',away:'Egypt',score:'1 - 1',status:'FT',stage:'Group G',venue:'Audi Field, Washington DC'},
+    {home:'Belgium',away:'Egypt',score:'1 - 1',status:'FT',stage:'Group G',venue:'Lumen Field, Seattle'},
     {home:'Saudi Arabia',away:'Uruguay',score:'1 - 0',status:'FT',stage:'Group H',venue:'Hard Rock Stadium, Miami'},
     {home:'Iran',away:'New Zealand',time:'07:00 AM',et:'9:00 PM ET (Jun 15)',stage:'Group G',venue:'GEODIS Park, Nashville'},
   ],
@@ -2017,14 +2017,14 @@ function playStream(url, channelData) {
   if (playbackTimeout) clearTimeout(playbackTimeout);
   showPlayerLoader('Loading channel...');
 
-  // Global timeout: if nothing plays within 8s, auto-fallback
+  // Global timeout: if nothing plays within 20s, auto-fallback
   playbackTimeout = setTimeout(function() {
     var v = document.getElementById('mainPlayer');
     if (v && (v.paused || v.readyState < 3)) {
       console.log('Playback timeout — auto-switching channel');
       autoFallbackChannel();
     }
-  }, 8000);
+  }, 20000);
 
   function onPlaying() {
     if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
@@ -2098,16 +2098,18 @@ function playStream(url, channelData) {
   // HLS.js for Chrome/Firefox/Edge
   if (typeof Hls !== 'undefined' && Hls.isSupported()) {
     var hls = new Hls({
-      maxMaxBufferLength: 10,
-      liveSyncDuration: 3,
-      liveMaxLatencyDuration: 10,
+      maxMaxBufferLength: 30,
+      liveSyncDuration: 5,
+      liveMaxLatencyDuration: 15,
       enableWorker: true,
       startLevel: -1,
-      fragLoadingMaxRetry: 2,
-      manifestLoadingMaxRetry: 2,
-      levelLoadingMaxRetry: 2,
-      fragLoadingMaxRetryTimeout: 4000,
-      manifestLoadingMaxRetryTimeout: 4000
+      fragLoadingMaxRetry: 4,
+      manifestLoadingMaxRetry: 4,
+      levelLoadingMaxRetry: 4,
+      fragLoadingMaxRetryTimeout: 8000,
+      manifestLoadingMaxRetryTimeout: 8000,
+      liveBackBufferLength: 0,
+      backBufferLength: 0
     });
     hls.loadSource(url);
     hls.attachMedia(video);
@@ -2649,15 +2651,15 @@ const MATCHES=[
 {id:35,grp:'F',md:3,date:'2026-06-25',et:'19:00',home:'Japan',away:'Sweden',stadium:'AT&T Stadium',city:'Dallas, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:36,grp:'F',md:3,date:'2026-06-25',et:'19:00',home:'Tunisia',away:'Netherlands',stadium:'Arrowhead Stadium',city:'Kansas City, USA',hs:null,as:null,st:'SCHEDULED'},
 // GROUP G
-{id:37,grp:'G',md:1,date:'2026-06-15',et:'15:00',home:'Belgium',away:'Egypt',stadium:'Lumen Field',city:'Seattle, USA',hs:null,as:null,st:'SCHEDULED'},
+{id:37,grp:'G',md:1,date:'2026-06-15',et:'15:00',home:'Belgium',away:'Egypt',stadium:'Lumen Field',city:'Seattle, USA',hs:1,as:1,st:'FT'},
 {id:38,grp:'G',md:1,date:'2026-06-15',et:'21:00',home:'Iran',away:'New Zealand',stadium:'SoFi Stadium',city:'Los Angeles, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:39,grp:'G',md:2,date:'2026-06-21',et:'15:00',home:'Belgium',away:'Iran',stadium:'SoFi Stadium',city:'Los Angeles, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:40,grp:'G',md:2,date:'2026-06-21',et:'21:00',home:'New Zealand',away:'Egypt',stadium:'BC Place',city:'Vancouver, CAN',hs:null,as:null,st:'SCHEDULED'},
 {id:41,grp:'G',md:3,date:'2026-06-26',et:'23:00',home:'Egypt',away:'Iran',stadium:'Lumen Field',city:'Seattle, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:42,grp:'G',md:3,date:'2026-06-26',et:'23:00',home:'New Zealand',away:'Belgium',stadium:'BC Place',city:'Vancouver, CAN',hs:null,as:null,st:'SCHEDULED'},
 // GROUP H
-{id:43,grp:'H',md:1,date:'2026-06-15',et:'12:00',home:'Spain',away:'Cape Verde',stadium:'Mercedes-Benz Stadium',city:'Atlanta, USA',hs:null,as:null,st:'SCHEDULED'},
-{id:44,grp:'H',md:1,date:'2026-06-15',et:'18:00',home:'Saudi Arabia',away:'Uruguay',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:null,as:null,st:'SCHEDULED'},
+{id:43,grp:'H',md:1,date:'2026-06-15',et:'12:00',home:'Spain',away:'Cape Verde',stadium:'Mercedes-Benz Stadium',city:'Atlanta, USA',hs:0,as:0,st:'FT'},
+{id:44,grp:'H',md:1,date:'2026-06-15',et:'18:00',home:'Saudi Arabia',away:'Uruguay',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:1,as:0,st:'FT'},
 {id:45,grp:'H',md:2,date:'2026-06-21',et:'12:00',home:'Spain',away:'Saudi Arabia',stadium:'Mercedes-Benz Stadium',city:'Atlanta, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:46,grp:'H',md:2,date:'2026-06-21',et:'18:00',home:'Uruguay',away:'Cape Verde',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:47,grp:'H',md:3,date:'2026-06-26',et:'20:00',home:'Cape Verde',away:'Saudi Arabia',stadium:'NRG Stadium',city:'Houston, USA',hs:null,as:null,st:'SCHEDULED'},
@@ -2954,8 +2956,8 @@ const STANDINGS={
   D:{teams:[{n:'USA 🇺🇸',p:1,w:1,d:0,l:0,gd:3,pts:3},{n:'Australia 🇦🇺',p:1,w:1,d:0,l:0,gd:2,pts:3},{n:'Türkiye 🇹🇷',p:1,w:0,d:0,l:1,gd:-2,pts:0},{n:'Paraguay 🇵🇾',p:1,w:0,d:0,l:1,gd:-3,pts:0}]},
   E:{teams:[{n:'Germany 🇩🇪',p:1,w:1,d:0,l:0,gd:6,pts:3},{n:'Ivory Coast 🇨🇮',p:1,w:1,d:0,l:0,gd:1,pts:3},{n:'Ecuador 🇪🇨',p:1,w:0,d:0,l:1,gd:-1,pts:0},{n:'Curaçao 🇨🇼',p:1,w:0,d:0,l:1,gd:-6,pts:0}]},
   F:{teams:[{n:'Sweden 🇸🇪',p:1,w:1,d:0,l:0,gd:4,pts:3},{n:'Netherlands 🇳🇱',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Japan 🇯🇵',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Tunisia 🇹🇳',p:1,w:0,d:0,l:1,gd:-4,pts:0}]},
-  G:{teams:[{n:'Belgium 🇧🇪',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Iran 🇮🇷',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Egypt 🇪🇬',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'New Zealand 🇳🇿',p:0,w:0,d:0,l:0,gd:0,pts:0}]},
-  H:{teams:[{n:'Spain 🇪🇸',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Uruguay 🇺🇾',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Saudi Arabia 🇸🇦',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Cape Verde 🇨🇻',p:0,w:0,d:0,l:0,gd:0,pts:0}]},
+  G:{teams:[{n:'Belgium 🇧🇪',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Egypt 🇪🇬',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Iran 🇮🇷',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'New Zealand 🇳🇿',p:0,w:0,d:0,l:0,gd:0,pts:0}]},
+  H:{teams:[{n:'Saudi Arabia 🇸🇦',p:1,w:1,d:0,l:0,gd:1,pts:3},{n:'Spain 🇪🇸',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Cape Verde 🇨🇻',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Uruguay 🇺🇾',p:1,w:0,d:0,l:1,gd:-1,pts:0}]},
   I:{teams:[{n:'France 🇫🇷',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Senegal 🇸🇳',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Norway 🇳🇴',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Iraq 🇮🇶',p:0,w:0,d:0,l:0,gd:0,pts:0}]},
   J:{teams:[{n:'Argentina 🇦🇷',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Algeria 🇩🇿',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Austria 🇦🇹',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Jordan 🇯🇴',p:0,w:0,d:0,l:0,gd:0,pts:0}]},
   K:{teams:[{n:'Portugal 🇵🇹',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Colombia 🇨🇴',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'Uzbekistan 🇺🇿',p:0,w:0,d:0,l:0,gd:0,pts:0},{n:'DR Congo 🇨🇩',p:0,w:0,d:0,l:0,gd:0,pts:0}]},
@@ -2970,7 +2972,7 @@ const STAGE={'A':'Group A','B':'Group B','C':'Group C','D':'Group D','E':'Group 
 
 function matchCard(m){
   const isLive=m.st==='IN_PLAY'||m.st==='LIVE';
-  const isDone=m.st==='FINISHED';
+  const isDone=m.st==='FINISHED'||m.st==='FT';
   const bdt=etToBDT(m.et);
   const etFmt=formatET(m.et);
   const nextDayStr=bdt.next?' (+1)':'';
@@ -3009,7 +3011,7 @@ function renderOldMatches(src){
   const live=all.filter(m=>m.st==='IN_PLAY'||m.st==='LIVE');
   const todayS=all.filter(m=>m.date===todayStr&&m.st==='SCHEDULED');
   const upcoming=all.filter(m=>m.date>todayStr&&m.st==='SCHEDULED');
-  const done=all.filter(m=>m.st==='FINISHED');
+  const done=all.filter(m=>m.st==='FINISHED'||m.st==='FT');
   const nm=`<div class="empty">${t('noMatches')}</div>`;
   var liveEl=document.getElementById('live-container');
   if(liveEl)liveEl.innerHTML=live.length?live.map(matchCard).join(''):nm;
