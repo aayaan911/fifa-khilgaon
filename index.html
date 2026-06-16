@@ -129,6 +129,17 @@ a{color:inherit;text-decoration:none}
 /* === VIDEO PLAYER === */
 .player-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#09090b;border-radius:8px;overflow:hidden}
 .player-wrap iframe{position:absolute;top:-70px;left:-250px;width:160%;height:calc(100% + 140px);border:none}
+/* Cinema Mode */
+.cinema-active .main-grid{max-width:100%;padding:0 0 32px;grid-template-columns:1fr}
+.cinema-active .player-wrap{border-radius:0;aspect-ratio:21/9;max-height:80vh}
+.cinema-active #desktopSidebar{display:none!important}
+.cinema-active .main-grid>div:first-child{padding:0}
+.cinema-active .main-grid>div:first-child>*:not(.player-wrap){max-width:1400px;margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px;width:100%;box-sizing:border-box}
+.cinema-toggle{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--muted);padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;flex-shrink:0}
+.cinema-toggle:hover{background:rgba(255,255,255,.15);color:var(--text)}
+.cinema-toggle.active{background:rgba(var(--accent-rgb),.15);border-color:rgba(var(--accent-rgb),.3);color:var(--accent)}
+.cinema-toggle svg{width:16px;height:16px}
+@media(max-width:768px){.cinema-toggle{display:none}.cinema-active .player-wrap{aspect-ratio:16/9}}
 .channel-info{display:flex;align-items:center;justify-content:space-between;padding:16px 0 20px;border-bottom:1px solid rgba(255,255,255,.1);gap:16px}
 .channel-name{min-width:0;flex:1}
 .channel-name h3{font-size:22px;font-weight:700;letter-spacing:-.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -906,7 +917,10 @@ if(!isIOS){
             </div>
             <p class="channel-cat" id="activeChCat">Live stream from category Sports</p>
           </div>
-          <button class="share-btn" onclick="shareLink()"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>Share</button>
+          <div style="display:flex;align-items:center;gap:8px">
+            <button class="cinema-toggle" id="cinemaBtn" onclick="toggleCinema()" title="Cinema Mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>Cinema</button>
+            <button class="share-btn" onclick="shareLink()"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>Share</button>
+          </div>
         </div>
 
         <!-- Info Cards -->
@@ -2355,6 +2369,17 @@ function shareLink() {
     navigator.clipboard.writeText(url);
     alert('Link copied!');
   }
+}
+
+// ====== CINEMA MODE ======
+function toggleCinema() {
+  var page = document.getElementById('page-live');
+  var btn = document.getElementById('cinemaBtn');
+  page.classList.toggle('cinema-active');
+  btn.classList.toggle('active');
+  // Scroll to top of video
+  var pw = document.getElementById('playerWrap');
+  if(pw) pw.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 // ====== THEME TOGGLE ======
