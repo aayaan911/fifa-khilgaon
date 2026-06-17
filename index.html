@@ -129,6 +129,51 @@ a{color:inherit;text-decoration:none}
 /* === VIDEO PLAYER === */
 .player-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#09090b;border-radius:8px;overflow:hidden}
 .player-wrap iframe{position:absolute;top:-70px;left:-250px;width:160%;height:calc(100% + 140px);border:none}
+/* Scores & Fixtures */
+.sf-live-banner{background:linear-gradient(135deg,#1a1040 0%,#6b2fa0 40%,#d42f5a 100%);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.sf-banner-left{flex-shrink:0}
+.sf-banner-title{font-size:18px;font-weight:800;color:#fff;letter-spacing:.5px}
+.sf-banner-sub{font-size:12px;color:rgba(255,255,255,.7);margin-top:2px}
+.sf-banner-match{flex:1;max-width:600px;background:rgba(255,255,255,.08);border-radius:12px;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.sf-banner-label{position:absolute;top:-8px;left:16px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:4px}
+.sf-banner-team{display:flex;align-items:center;gap:8px;color:#fff;font-size:15px;font-weight:600}
+.sf-banner-team img{width:24px;height:18px;object-fit:contain;border-radius:2px}
+.sf-banner-center{text-align:center}
+.sf-banner-score{font-size:28px;font-weight:800;color:#fff}
+.sf-banner-group{font-size:10px;color:rgba(255,255,255,.6);margin-top:2px}
+.sf-banner-min{position:absolute;top:8px;right:16px;font-size:11px;color:#f97316;font-weight:700}
+.sf-header{display:flex;align-items:center;justify-content:space-between;margin:24px 0 16px}
+.sf-title{font-size:22px;font-weight:800;color:var(--text)}
+.sf-auto-update{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sf-pulse{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;animation:sfPulse 2s infinite}
+@keyframes sfPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.sf-container{display:flex;flex-direction:column;gap:0}
+.sf-loading{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+.sf-date-hd{font-size:14px;font-weight:700;color:var(--text);padding:16px 0 8px;border-bottom:1px solid var(--border)}
+.sf-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:8px 0;transition:transform .15s,box-shadow .15s;cursor:default}
+.sf-card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.sf-card.is-live{border-left:4px solid var(--accent);background:rgba(var(--accent-rgb),.04)}
+.sf-card-main{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sf-team{display:flex;align-items:center;gap:8px;flex:1}
+.sf-team.away{justify-content:flex-end;text-align:right}
+.sf-team-name{font-size:15px;font-weight:600;color:var(--text)}
+.sf-team-flag{font-size:20px}
+.sf-score-center{text-align:center;min-width:80px;flex-shrink:0}
+.sf-score-num{font-size:26px;font-weight:800;color:var(--text);letter-spacing:2px}
+.sf-score-time{font-size:22px;font-weight:700;color:var(--accent);letter-spacing:0}
+.sf-card-meta{text-align:center;margin-top:8px;font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.sf-card-meta span{white-space:nowrap}
+.sf-card-meta .sf-live-min{color:var(--accent);font-weight:700}
+.sf-card-meta .sf-ft{color:var(--accent);font-weight:700}
+@media(max-width:600px){
+  .sf-live-banner{flex-direction:column;padding:16px;gap:12px}
+  .sf-banner-match{max-width:100%;padding:12px 16px}
+  .sf-banner-score{font-size:22px}
+  .sf-team-name{font-size:13px}
+  .sf-score-num{font-size:22px}
+  .sf-score-time{font-size:18px}
+  .sf-header{flex-direction:column;align-items:flex-start;gap:4px}
+}
 /* Cinema Mode */
 .cinema-active .main-grid{max-width:100%;padding:0 0 32px;grid-template-columns:1fr}
 .cinema-active .player-wrap{border-radius:0;aspect-ratio:21/9;max-height:80vh}
@@ -804,9 +849,9 @@ if(!isIOS){
     <nav class="nav">
       <a href="#" class="active" data-page="live" onclick="showPage('live');return false">Live Now<span class="dot"></span></a>
       <a href="#" data-page="schedule" onclick="showPage('schedule');return false">Schedule</a>
+      <a href="#" data-page="matches" onclick="showPage('matches');return false">Scores</a>
       <a href="#" data-page="standings" onclick="showPage('standings');return false">Groups</a>
       <a href="#" data-page="bracket" onclick="showPage('bracket');return false">Bracket</a>
-      <a href="#" data-page="matches" onclick="showPage('matches');return false">Matches</a>
       <a href="#" data-page="stats" onclick="showPage('stats');return false">Stats</a>
       <a href="#" data-page="scorers" onclick="showPage('scorers');return false">Scorers</a>
       <a href="#" data-page="store" onclick="showPage('store');return false">Jerseys</a>
@@ -840,6 +885,10 @@ if(!isIOS){
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
       Schedule
     </a>
+    <a href="#" data-page="matches" onclick="showPage('matches');toggleMobileMenu();return false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+      Scores
+    </a>
     <a href="#" data-page="standings" onclick="showPage('standings');toggleMobileMenu();return false">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
       Groups
@@ -847,10 +896,6 @@ if(!isIOS){
     <a href="#" data-page="bracket" onclick="showPage('bracket');toggleMobileMenu();return false">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="m5 12-2-2 2-2"/><path d="m19 12 2-2-2-2"/><path d="M5 10h14"/></svg>
       Bracket
-    </a>
-    <a href="#" data-page="matches" onclick="showPage('matches');toggleMobileMenu();return false">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
-      Matches
     </a>
     <a href="#" data-page="stats" onclick="showPage('stats');toggleMobileMenu();return false">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
@@ -1231,15 +1276,25 @@ if(!isIOS){
   </div>
 </div>
 
-<!-- ====== PAGE-MATCHES ====== -->
+<!-- ====== PAGE-MATCHES (Scores & Fixtures) ====== -->
 <div class="page" id="page-matches">
-  <div class="wrap">
-    <div class="sec-hd"><h2 id="h-today">Today's Matches</h2></div>
-    <div id="today-container"></div>
-    <div class="sec-hd"><h2 id="h-upcoming">Upcoming Fixtures</h2></div>
-    <div id="upcoming-container"></div>
-    <div class="sec-hd"><h2 id="h-results">Recent Results</h2></div>
-    <div id="results-container"></div>
+  <!-- Live Score Banner -->
+  <div id="sf-live-banner" class="sf-live-banner" style="display:none">
+    <div class="sf-banner-left">
+      <div class="sf-banner-title">FIFA World Cup 2026</div>
+      <div class="sf-banner-sub">11 June - 19 July 2026</div>
+    </div>
+    <div class="sf-banner-match" id="sf-banner-match"></div>
+  </div>
+
+  <div class="wrap" style="max-width:900px">
+    <div class="sf-header">
+      <h2 class="sf-title">Scores & Fixtures</h2>
+      <div class="sf-auto-update">Auto-updates every 60s <span class="sf-pulse"></span></div>
+    </div>
+    <div id="sf-container" class="sf-container">
+      <div class="sf-loading">Loading scores from ESPN...</div>
+    </div>
   </div>
 </div>
 
@@ -1921,8 +1976,8 @@ function showPage(name) {
     a.classList.toggle('active', a.getAttribute('data-page') === name);
   });
   window.scrollTo(0,0);
-  if(name==='matches'){
-  }
+  if(name==='matches'){startScoresRefresh();}
+  if(name!=='matches'&&espnRefreshTimer){clearInterval(espnRefreshTimer);espnRefreshTimer=null;}
 }
 
 // ====== RENDER CHANNEL LIST ======
@@ -3032,22 +3087,125 @@ function matchCard(m){
   </div>`;
 }
 
-function renderOldMatches(src){
-  const all=src||MATCHES;
-  const live=all.filter(m=>m.st==='IN_PLAY'||m.st==='LIVE');
-  const todayS=all.filter(m=>m.date===todayStr&&m.st==='SCHEDULED');
-  const upcoming=all.filter(m=>m.date>todayStr&&m.st==='SCHEDULED');
-  const done=all.filter(m=>m.st==='FINISHED'||m.st==='FT');
-  const nm=`<div class="empty">${t('noMatches')}</div>`;
-  var liveEl=document.getElementById('live-container');
-  if(liveEl)liveEl.innerHTML=live.length?live.map(matchCard).join(''):nm;
-  document.getElementById('today-container').innerHTML=todayS.length?todayS.map(matchCard).join(''):nm;
-  document.getElementById('results-container').innerHTML=done.length?done.slice(-4).reverse().map(matchCard).join(''):nm;
-  const byDate={};
-  upcoming.forEach(m=>{(byDate[m.date]=byDate[m.date]||[]).push(m)});
-  document.getElementById('upcoming-container').innerHTML=Object.keys(byDate).sort().map(dt=>
-    `<div class="date-bar">${fmtDate(dt)}</div>`+byDate[dt].map(matchCard).join('')
-  ).join('')||nm;
+// ESPN API live scores
+var espnRefreshTimer=null;
+function fetchESPNScores(){
+  // Fetch today's + yesterday's + tomorrow's dates
+  var now=new Date();
+  var dates=[];
+  for(var d=-2;d<=1;d++){
+    var dt=new Date(now);dt.setDate(dt.getDate()+d);
+    dates.push(dt.getFullYear()+String(dt.getMonth()+1).padStart(2,'0')+String(dt.getDate()).padStart(2,'0'));
+  }
+  var allEvents=[];
+  var fetched=0;
+  dates.forEach(function(dateStr){
+    fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates='+dateStr)
+      .then(function(r){return r.json()})
+      .then(function(data){
+        if(data.events)allEvents=allEvents.concat(data.events);
+        fetched++;
+        if(fetched===dates.length){
+          allEvents.sort(function(a,b){return new Date(a.date)-new Date(b.date)});
+          renderScoresFixtures(allEvents);
+        }
+      })
+      .catch(function(){fetched++;if(fetched===dates.length&&allEvents.length)renderScoresFixtures(allEvents)});
+  });
+}
+
+function renderScoresFixtures(events){
+  if(!events||!events.length){
+    document.getElementById('sf-container').innerHTML='<div class="sf-loading">No fixtures found</div>';
+    return;
+  }
+  // Find live match for banner
+  var liveMatch=null;
+  events.forEach(function(ev){
+    var comp=ev.competitions[0];
+    if(comp.status.type.state==='in')liveMatch=ev;
+  });
+  var banner=document.getElementById('sf-live-banner');
+  var bannerMatch=document.getElementById('sf-banner-match');
+  if(liveMatch){
+    var lc=liveMatch.competitions[0];
+    var lHome=lc.competitors.find(function(c){return c.homeAway==='home'});
+    var lAway=lc.competitors.find(function(c){return c.homeAway==='away'});
+    var lGroup=(lc.altGameNote||'').replace('FIFA World Cup, ','');
+    banner.style.display='flex';
+    bannerMatch.innerHTML=
+      '<div class="sf-banner-label">NOW PLAYING</div>'+
+      '<div class="sf-banner-team"><img src="'+lHome.team.logo+'" alt="'+lHome.team.abbreviation+'"> '+lHome.team.displayName+'</div>'+
+      '<div class="sf-banner-center"><div class="sf-banner-score">'+lHome.score+' - '+lAway.score+'</div><div class="sf-banner-group">'+lGroup+'</div></div>'+
+      '<div class="sf-banner-team">'+lAway.team.displayName+' <img src="'+lAway.team.logo+'" alt="'+lAway.team.abbreviation+'"></div>'+
+      '<div class="sf-banner-min">'+lc.status.displayClock+'</div>';
+  }else{
+    banner.style.display='none';
+  }
+  // Group events by date (in BD timezone = UTC+6)
+  var grouped={};
+  events.forEach(function(ev){
+    var utc=new Date(ev.date);
+    var bd=new Date(utc.getTime()+6*3600000);
+    var key=bd.getFullYear()+'-'+String(bd.getMonth()+1).padStart(2,'0')+'-'+String(bd.getDate()).padStart(2,'0');
+    if(!grouped[key])grouped[key]=[];
+    grouped[key].push(ev);
+  });
+  var html='';
+  var sortedDates=Object.keys(grouped).sort().reverse();
+  sortedDates.forEach(function(dateKey){
+    var dt=new Date(dateKey+'T12:00:00');
+    var dayName=dt.toLocaleDateString('en',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    html+='<div class="sf-date-hd">'+dayName+'</div>';
+    grouped[dateKey].forEach(function(ev){
+      var comp=ev.competitions[0];
+      var home=comp.competitors.find(function(c){return c.homeAway==='home'});
+      var away=comp.competitors.find(function(c){return c.homeAway==='away'});
+      var state=comp.status.type.state;
+      var isLive=state==='in';
+      var isDone=state==='post';
+      var group=(comp.altGameNote||'').replace('FIFA World Cup, ','');
+      var venue=comp.venue?comp.venue.fullName||comp.venue.displayName||'':'';
+      var city=comp.venue&&comp.venue.address?comp.venue.address.city+', '+comp.venue.address.country:'';
+      var stage='First Stage';
+      // Score or time
+      var centerHtml='';
+      if(isLive||isDone){
+        centerHtml='<div class="sf-score-num">'+home.score+' - '+away.score+'</div>';
+      }else{
+        // Convert to BDT
+        var utcD=new Date(ev.date);
+        var bdD=new Date(utcD.getTime()+6*3600000);
+        var h=bdD.getHours();var mi=bdD.getMinutes();
+        var ampm=h>=12?'PM':'AM';h=h%12||12;
+        var timeStr=h+':'+String(mi).padStart(2,'0')+' '+ampm;
+        centerHtml='<div class="sf-score-time">'+timeStr+'</div>';
+      }
+      // Meta line
+      var metaParts=[stage,group];
+      if(venue)metaParts.push(venue+(city?' ('+city+')':''));
+      if(isLive){
+        metaParts.push('<span class="sf-live-min">'+comp.status.displayClock+'</span>');
+      }else if(isDone){
+        metaParts.push('<span class="sf-ft">FT</span>');
+      }
+      html+='<div class="sf-card'+(isLive?' is-live':'')+'">'+
+        '<div class="sf-card-main">'+
+          '<div class="sf-team"><span class="sf-team-flag">'+(FLAGS[home.team.displayName]||'')+'</span><span class="sf-team-name">'+home.team.displayName+'</span></div>'+
+          '<div class="sf-score-center">'+centerHtml+'</div>'+
+          '<div class="sf-team away"><span class="sf-team-name">'+away.team.displayName+'</span><span class="sf-team-flag">'+(FLAGS[away.team.displayName]||'')+'</span></div>'+
+        '</div>'+
+        '<div class="sf-card-meta">'+metaParts.map(function(p){return '<span>'+p+'</span>'}).join(' <span>&middot;</span> ')+'</div>'+
+      '</div>';
+    });
+  });
+  document.getElementById('sf-container').innerHTML=html;
+}
+
+function startScoresRefresh(){
+  fetchESPNScores();
+  if(espnRefreshTimer)clearInterval(espnRefreshTimer);
+  espnRefreshTimer=setInterval(fetchESPNScores,60000);
 }
 
 /* ============================================================
@@ -3862,7 +4020,7 @@ function updateAllCountdowns(){
 updateAllCountdowns();
 setInterval(updateAllCountdowns,1000);
 
-function renderAll(){applyLang();renderOldMatches();renderStandings();renderStore();renderStats();renderPredictions();renderRankings()}
+function renderAll(){applyLang();renderStandings();renderStore();renderStats();renderPredictions();renderRankings()}
 
 /* ============================================================
    LIVE SCORE TICKER — auto-detects live match + fetches score
