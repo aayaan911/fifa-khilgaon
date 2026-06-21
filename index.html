@@ -1836,7 +1836,7 @@ const SCHEDULE = {
     {home:'Netherlands',away:'Sweden',score:'5 - 1',status:'FT',stage:'Group F',venue:'NRG Stadium, Houston'},
     {home:'Germany',away:'Ivory Coast',score:'2 - 1',status:'FT',stage:'Group E',venue:'BMO Field, Toronto'},
     {home:'Ecuador',away:'Curaçao',score:'0 - 0',status:'FT',stage:'Group E',venue:'Arrowhead Stadium, Kansas City'},
-    {home:'Tunisia',away:'Japan',time:'10:00 AM',et:'12:00 AM ET',stage:'Group F',venue:'Estadio BBVA, Monterrey'},
+    {home:'Tunisia',away:'Japan',score:'0 - 4',status:'FT',stage:'Group F',venue:'Estadio BBVA, Monterrey'},
   ],
   '2026-06-22':[
     {home:'Spain',away:'Saudi Arabia',time:'10:00 PM',et:'12:00 PM ET',stage:'Group H',venue:'Mercedes-Benz Stadium, Atlanta'},
@@ -2728,7 +2728,7 @@ const MATCHES=[
 {id:31,grp:'F',md:1,date:'2026-06-14',et:'16:00',home:'Netherlands',away:'Japan',stadium:'AT&T Stadium',city:'Dallas, USA',hs:2,as:2,st:'FT'},
 {id:32,grp:'F',md:1,date:'2026-06-14',et:'22:00',home:'Sweden',away:'Tunisia',stadium:'Estadio BBVA',city:'Monterrey, MEX',hs:5,as:1,st:'FT'},
 {id:33,grp:'F',md:2,date:'2026-06-20',et:'13:00',home:'Netherlands',away:'Sweden',stadium:'NRG Stadium',city:'Houston, USA',hs:5,as:1,st:'FT'},
-{id:34,grp:'F',md:2,date:'2026-06-20',et:'00:00',home:'Tunisia',away:'Japan',stadium:'Estadio BBVA',city:'Monterrey, MEX',hs:null,as:null,st:'SCHEDULED'},
+{id:34,grp:'F',md:2,date:'2026-06-20',et:'00:00',home:'Tunisia',away:'Japan',stadium:'Estadio BBVA',city:'Monterrey, MEX',hs:0,as:4,st:'FT'},
 {id:35,grp:'F',md:3,date:'2026-06-25',et:'19:00',home:'Japan',away:'Sweden',stadium:'AT&T Stadium',city:'Dallas, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:36,grp:'F',md:3,date:'2026-06-25',et:'19:00',home:'Tunisia',away:'Netherlands',stadium:'Arrowhead Stadium',city:'Kansas City, USA',hs:null,as:null,st:'SCHEDULED'},
 // GROUP G
@@ -3036,7 +3036,7 @@ const STANDINGS={
   C:{teams:[{n:'Brazil 🇧🇷',p:2,w:1,d:1,l:0,gd:3,pts:4},{n:'Morocco 🇲🇦',p:2,w:1,d:1,l:0,gd:1,pts:4},{n:'Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Haiti 🇭🇹',p:2,w:0,d:0,l:2,gd:-4,pts:0}]},
   D:{teams:[{n:'USA 🇺🇸',p:2,w:2,d:0,l:0,gd:5,pts:6},{n:'Australia 🇦🇺',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Paraguay 🇵🇾',p:2,w:1,d:0,l:1,gd:-2,pts:3},{n:'Türkiye 🇹🇷',p:2,w:0,d:0,l:2,gd:-3,pts:0}]},
   E:{teams:[{n:'Germany 🇩🇪',p:2,w:2,d:0,l:0,gd:7,pts:6},{n:'Ivory Coast 🇨🇮',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Ecuador 🇪🇨',p:2,w:0,d:1,l:1,gd:-1,pts:1},{n:'Curaçao 🇨🇼',p:2,w:0,d:1,l:1,gd:-6,pts:1}]},
-  F:{teams:[{n:'Netherlands 🇳🇱',p:2,w:1,d:1,l:0,gd:4,pts:4},{n:'Sweden 🇸🇪',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Japan 🇯🇵',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Tunisia 🇹🇳',p:1,w:0,d:0,l:1,gd:-4,pts:0}]},
+  F:{teams:[{n:'Japan 🇯🇵',p:2,w:1,d:1,l:0,gd:4,pts:4},{n:'Netherlands 🇳🇱',p:2,w:1,d:1,l:0,gd:4,pts:4},{n:'Sweden 🇸🇪',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Tunisia 🇹🇳',p:2,w:0,d:0,l:2,gd:-8,pts:0}]},
   G:{teams:[{n:'New Zealand 🇳🇿',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Iran 🇮🇷',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Egypt 🇪🇬',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Belgium 🇧🇪',p:1,w:0,d:1,l:0,gd:0,pts:1}]},
   H:{teams:[{n:'Saudi Arabia 🇸🇦',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Uruguay 🇺🇾',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Spain 🇪🇸',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Cape Verde 🇨🇻',p:1,w:0,d:1,l:0,gd:0,pts:1}]},
   I:{teams:[{n:'France 🇫🇷',p:1,w:1,d:0,l:0,gd:2,pts:3},{n:'Norway 🇳🇴',p:1,w:1,d:0,l:0,gd:3,pts:3},{n:'Senegal 🇸🇳',p:1,w:0,d:0,l:1,gd:-2,pts:0},{n:'Iraq 🇮🇶',p:1,w:0,d:0,l:1,gd:-3,pts:0}]},
