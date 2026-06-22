@@ -1841,7 +1841,7 @@ const SCHEDULE = {
   '2026-06-22':[
     {home:'Spain',away:'Saudi Arabia',score:'4 - 0',status:'FT',stage:'Group H',venue:'Mercedes-Benz Stadium, Atlanta'},
     {home:'Belgium',away:'Iran',score:'0 - 0',status:'FT',stage:'Group G',venue:'SoFi Stadium, Inglewood'},
-    {home:'Uruguay',away:'Cape Verde',time:'04:00 AM',et:'6:00 PM ET (Jun 21)',stage:'Group H',venue:'Hard Rock Stadium, Miami'},
+    {home:'Uruguay',away:'Cape Verde',score:'2 - 2',status:'FT',stage:'Group H',venue:'Hard Rock Stadium, Miami'},
     {home:'New Zealand',away:'Egypt',time:'07:00 AM',et:'9:00 PM ET (Jun 21)',stage:'Group G',venue:'BC Place, Vancouver'},
   ],
   '2026-06-23':[
@@ -2500,7 +2500,7 @@ var MATCH_TIMES_BDT = [
   {home:'Tunisia',away:'Japan',bdt:'2026-06-21T10:00:00+06:00'},
   {home:'Spain',away:'Saudi Arabia',bdt:'2026-06-21T22:00:00+06:00'},
   {home:'Belgium',away:'Iran',bdt:'2026-06-22T01:00:00+06:00'},
-  {home:'Uruguay',away:'Cape Verde',bdt:'2026-06-22T04:00:00+06:00'},
+  {home:'Uruguay',away:'Cape Verde',bdt:'2026-06-22T04:00:00+06:00',status:'FT',score:'2-2'},
   {home:'New Zealand',away:'Egypt',bdt:'2026-06-22T07:00:00+06:00'},
   {home:'Argentina',away:'Austria',bdt:'2026-06-22T23:00:00+06:00'},
   {home:'France',away:'Iraq',bdt:'2026-06-23T03:00:00+06:00'},
@@ -2742,7 +2742,7 @@ const MATCHES=[
 {id:43,grp:'H',md:1,date:'2026-06-15',et:'12:00',home:'Spain',away:'Cape Verde',stadium:'Mercedes-Benz Stadium',city:'Atlanta, USA',hs:0,as:0,st:'FT'},
 {id:44,grp:'H',md:1,date:'2026-06-15',et:'18:00',home:'Saudi Arabia',away:'Uruguay',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:1,as:1,st:'FT'},
 {id:45,grp:'H',md:2,date:'2026-06-21',et:'12:00',home:'Spain',away:'Saudi Arabia',stadium:'Mercedes-Benz Stadium',city:'Atlanta, USA',hs:4,as:0,st:'FT'},
-{id:46,grp:'H',md:2,date:'2026-06-21',et:'18:00',home:'Uruguay',away:'Cape Verde',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:null,as:null,st:'SCHEDULED'},
+{id:46,grp:'H',md:2,date:'2026-06-21',et:'18:00',home:'Uruguay',away:'Cape Verde',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:2,as:2,st:'FT'},
 {id:47,grp:'H',md:3,date:'2026-06-26',et:'20:00',home:'Cape Verde',away:'Saudi Arabia',stadium:'NRG Stadium',city:'Houston, USA',hs:null,as:null,st:'SCHEDULED'},
 {id:48,grp:'H',md:3,date:'2026-06-26',et:'20:00',home:'Uruguay',away:'Spain',stadium:'Estadio Akron',city:'Guadalajara, MEX',hs:null,as:null,st:'SCHEDULED'},
 // GROUP I
@@ -3038,7 +3038,7 @@ const STANDINGS={
   E:{teams:[{n:'Germany 🇩🇪',p:2,w:2,d:0,l:0,gd:7,pts:6},{n:'Ivory Coast 🇨🇮',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Ecuador 🇪🇨',p:2,w:0,d:1,l:1,gd:-1,pts:1},{n:'Curaçao 🇨🇼',p:2,w:0,d:1,l:1,gd:-6,pts:1}]},
   F:{teams:[{n:'Japan 🇯🇵',p:2,w:1,d:1,l:0,gd:4,pts:4},{n:'Netherlands 🇳🇱',p:2,w:1,d:1,l:0,gd:4,pts:4},{n:'Sweden 🇸🇪',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Tunisia 🇹🇳',p:2,w:0,d:0,l:2,gd:-8,pts:0}]},
   G:{teams:[{n:'Belgium 🇧🇪',p:2,w:0,d:2,l:0,gd:0,pts:2},{n:'Iran 🇮🇷',p:2,w:0,d:2,l:0,gd:0,pts:2},{n:'Egypt 🇪🇬',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'New Zealand 🇳🇿',p:1,w:0,d:1,l:0,gd:0,pts:1}]},
-  H:{teams:[{n:'Spain 🇪🇸',p:2,w:1,d:1,l:0,gd:4,pts:4},{n:'Cape Verde 🇨🇻',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Uruguay 🇺🇾',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Saudi Arabia 🇸🇦',p:2,w:0,d:1,l:1,gd:-4,pts:1}]},
+  H:{teams:[{n:'Spain 🇪🇸',p:2,w:1,d:1,l:0,gd:4,pts:4},{n:'Cape Verde 🇨🇻',p:2,w:0,d:2,l:0,gd:0,pts:2},{n:'Uruguay 🇺🇾',p:2,w:0,d:2,l:0,gd:0,pts:2},{n:'Saudi Arabia 🇸🇦',p:2,w:0,d:1,l:1,gd:-4,pts:1}]},
   I:{teams:[{n:'France 🇫🇷',p:1,w:1,d:0,l:0,gd:2,pts:3},{n:'Norway 🇳🇴',p:1,w:1,d:0,l:0,gd:3,pts:3},{n:'Senegal 🇸🇳',p:1,w:0,d:0,l:1,gd:-2,pts:0},{n:'Iraq 🇮🇶',p:1,w:0,d:0,l:1,gd:-3,pts:0}]},
   J:{teams:[{n:'Argentina 🇦🇷',p:1,w:1,d:0,l:0,gd:3,pts:3},{n:'Austria 🇦🇹',p:1,w:1,d:0,l:0,gd:2,pts:3},{n:'Algeria 🇩🇿',p:1,w:0,d:0,l:1,gd:-3,pts:0},{n:'Jordan 🇯🇴',p:1,w:0,d:0,l:1,gd:-2,pts:0}]},
   K:{teams:[{n:'Colombia 🇨🇴',p:1,w:1,d:0,l:0,gd:2,pts:3},{n:'DR Congo 🇨🇩',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Portugal 🇵🇹',p:1,w:0,d:1,l:0,gd:0,pts:1},{n:'Uzbekistan 🇺🇿',p:1,w:0,d:0,l:1,gd:-2,pts:0}]},
