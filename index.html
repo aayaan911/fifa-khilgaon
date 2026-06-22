@@ -2141,36 +2141,8 @@ function playStream(url, channelData) {
     return;
   }
 
-  // Native HLS support (Safari/iOS)
-  if (url.includes('.m3u8') && video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = url;
-    var nativeRetries = 0;
-    video.onerror = function() {
-      nativeRetries++;
-      if (nativeRetries <= 2) {
-        showPlayerLoader('Reconnecting... (' + nativeRetries + '/2)');
-        setTimeout(function() { video.src = url; video.play().catch(function(){}); }, 2000);
-      } else {
-        autoFallbackChannel();
-      }
-    };
-    video.muted = true;
-    video.play().then(function() {
-      if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
-      hidePlayerLoader();
-    }).catch(function(){
-      if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
-      showPlayerLoader('Tap to play ▶');
-      document.getElementById('playerLoader').style.pointerEvents = 'auto';
-      document.getElementById('playerLoader').style.cursor = 'pointer';
-      document.getElementById('playerLoader').onclick = function() {
-        video.muted = true; video.play().catch(function(){}); hidePlayerLoader();
-      };
-    });
-    return;
-  }
-  // HLS.js for Chrome/Firefox/Edge
-  if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+  // HLS.js for Chrome/Firefox/Edge (MUST come before native HLS check)
+  if (url.includes('.m3u8') && typeof Hls !== 'undefined' && Hls.isSupported()) {
     var hls = new Hls({
       maxMaxBufferLength: 30,
       liveSyncDuration: 5,
@@ -2229,8 +2201,32 @@ function playStream(url, channelData) {
       }
     });
     currentHls = hls;
+  } else if (url.includes('.m3u8') && video.canPlayType('application/vnd.apple.mpegurl')) {
+    // Native HLS fallback (Safari/iOS only)
+    video.src = url;
+    var nativeRetries = 0;
+    video.onerror = function() {
+      nativeRetries++;
+      if (nativeRetries <= 2) {
+        showPlayerLoader('Reconnecting... (' + nativeRetries + '/2)');
+        setTimeout(function() { video.src = url; video.play().catch(function(){}); }, 2000);
+      } else {
+        autoFallbackChannel();
+      }
+    };
+    video.muted = true;
+    video.play().then(function() {
+      if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+      hidePlayerLoader();
+    }).catch(function(){
+      if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+      showPlayerLoader('Tap to play ▶');
+      var ldr = document.getElementById('playerLoader');
+      if (ldr) { ldr.style.pointerEvents = 'auto'; ldr.style.cursor = 'pointer'; }
+      ldr.onclick = function() { video.muted = true; video.play().catch(function(){}); hidePlayerLoader(); };
+    });
   } else {
-    // Fallback: try direct src
+    // Last resort: try direct src
     video.src = url;
     video.play().catch(function(){ hidePlayerLoader(); });
   }
