@@ -2159,24 +2159,37 @@ function playStream(url, channelData) {
     });
     hls.loadSource(url);
     hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+
+    var manifestParsed = false;
+    var mediaAttached = false;
+
+    function tryPlay() {
+      if (!manifestParsed || !mediaAttached) return;
       showPlayerLoader('Starting stream...');
       video.muted = true;
       video.play().then(function() {
         if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
         hidePlayerLoader();
       }).catch(function(){
-        // Autoplay blocked — cancel timeout, wait for user tap
         if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
         showPlayerLoader('Tap to play ▶');
-        document.getElementById('playerLoader').style.pointerEvents = 'auto';
-        document.getElementById('playerLoader').style.cursor = 'pointer';
-        document.getElementById('playerLoader').onclick = function() {
+        var ldr = document.getElementById('playerLoader');
+        if (ldr) { ldr.style.pointerEvents = 'auto'; ldr.style.cursor = 'pointer'; }
+        if (ldr) ldr.onclick = function() {
           video.muted = true;
           video.play().catch(function(){});
           hidePlayerLoader();
         };
       });
+    }
+
+    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+      manifestParsed = true;
+      tryPlay();
+    });
+    hls.on(Hls.Events.MEDIA_ATTACHED, function() {
+      mediaAttached = true;
+      tryPlay();
     });
     hls.on(Hls.Events.ERROR, function(e, data) {
       if (data.fatal) {
