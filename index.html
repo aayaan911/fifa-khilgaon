@@ -2117,8 +2117,13 @@ function playStream(url, channelData) {
       });
       showPlayerLoader('Starting stream...');
       player.load(url).then(function() {
-        video.play().catch(function(){
-          showPlayerLoader('Tap to play');
+        video.muted = true;
+        video.play().then(function() {
+          if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+          hidePlayerLoader();
+        }).catch(function(){
+          if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+          showPlayerLoader('Tap to play ▶');
           document.getElementById('playerLoader').style.pointerEvents = 'auto';
           document.getElementById('playerLoader').style.cursor = 'pointer';
           document.getElementById('playerLoader').onclick = function() {
@@ -2149,8 +2154,13 @@ function playStream(url, channelData) {
         autoFallbackChannel();
       }
     };
-    video.play().catch(function(){
-      showPlayerLoader('Tap to play');
+    video.muted = true;
+    video.play().then(function() {
+      if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+      hidePlayerLoader();
+    }).catch(function(){
+      if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+      showPlayerLoader('Tap to play ▶');
       document.getElementById('playerLoader').style.pointerEvents = 'auto';
       document.getElementById('playerLoader').style.cursor = 'pointer';
       document.getElementById('playerLoader').onclick = function() {
@@ -2179,8 +2189,14 @@ function playStream(url, channelData) {
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED, function() {
       showPlayerLoader('Starting stream...');
-      video.play().catch(function(){
-        showPlayerLoader('Tap to play');
+      video.muted = true;
+      video.play().then(function() {
+        if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+        hidePlayerLoader();
+      }).catch(function(){
+        // Autoplay blocked — cancel timeout, wait for user tap
+        if (playbackTimeout) { clearTimeout(playbackTimeout); playbackTimeout = null; }
+        showPlayerLoader('Tap to play ▶');
         document.getElementById('playerLoader').style.pointerEvents = 'auto';
         document.getElementById('playerLoader').style.cursor = 'pointer';
         document.getElementById('playerLoader').onclick = function() {
@@ -2220,8 +2236,8 @@ function playStream(url, channelData) {
   }
 }
 
+var fallbackIndex = 0;
 function autoFallbackChannel() {
-  // Find available HLS channels (skip current + DASH on mobile)
   var pool = CHANNELS.filter(function(c) {
     if (c.id === activeChannel.id) return false;
     if (isMobileDevice && c.type === 'dash') return false;
@@ -2231,9 +2247,10 @@ function autoFallbackChannel() {
     showPlayerLoader('All channels unavailable. Pull down to refresh.');
     return;
   }
-  var next = pool[0];
+  fallbackIndex = (fallbackIndex + 1) % pool.length;
+  var next = pool[fallbackIndex];
   showPlayerLoader('Switching to ' + next.name + '...');
-  setTimeout(function() { switchChannel(next.id); }, 1000);
+  setTimeout(function() { switchChannel(next.id); }, 1500);
 }
 
 function playHLS(url) { playStream(url, null); }
