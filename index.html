@@ -1742,8 +1742,8 @@ if(!isIOS){
 <script>
 // ====== CHANNELS DATA ======
 const CHANNELS = [
-  {id:'circle-fifa1',name:'FIFA World Cup HD',ch:'Channel 1',cat:'Sports',icon:'⚽',viewers:'LIVE',src:'https://abgfgo7aaaaaaaammo4qlji7ci5df.ta.bia-cf.live.pv-cdn.net/pdx-nitro/live/clients/dash/enc/ap5wz1ofsp/out/v1/7fa6feef143747beaa186ebb6dfb2532/cenc.mpd',type:'dash',drm:{clearKeys:{'c620c93c60c04999eb9ddc28ecfb70a8':'e76a709c251313190e76cb3c3d3a5824'}}},
-  {id:'bdixtv',name:'BDIX TV Live',ch:'Channel 2',cat:'Sports',icon:'📡',viewers:'LIVE',src:'https://live.kooran51.cfd/yorrr1/index.m3u8'},
+  {id:'ajker-khela1',name:'Ajker Khela HD',ch:'Channel 1',cat:'Sports',icon:'⚽',viewers:'LIVE',src:'https://ua102.online24.pm:8443/1101/video.m3u8?token=350B326FB34F4B8'},
+  {id:'ajker-khela2',name:'Ajker Khela SD',ch:'Channel 2',cat:'Sports',icon:'📡',viewers:'LIVE',src:'http://84.17.50.102/fox/index.m3u8'},
   {id:'fifa-ch1',name:'FIFA World Cup',ch:'Channel 3',cat:'Sports',icon:'🏆',viewers:'LIVE',src:'https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8'},
   {id:'fifa-ch2',name:'FIFA World Cup',ch:'Channel 4',cat:'Sports',icon:'🏆',viewers:'LIVE',src:'https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8'},
   {id:'fifa-ch3',name:'FIFA World Cup',ch:'Channel 5',cat:'Sports',icon:'🏆',viewers:'LIVE',src:'https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8'},
@@ -1758,10 +1758,6 @@ const CHANNELS = [
 var isIOSDevice = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 var isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 var defaultChannel = CHANNELS[0];
-if (isIOSDevice) {
-  // iOS can't play DASH — default to HLS channel
-  defaultChannel = CHANNELS.find(function(c){ return !c.type || c.type !== 'dash'; }) || CHANNELS[1];
-}
 let activeChannel = defaultChannel;
 
 // ====== HIGHLIGHTS DATA ======
