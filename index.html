@@ -1014,7 +1014,7 @@ if(!isIOS){
       <div class="sidebar-section">
         <div class="sidebar-header">
           <h3><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg> Live Channels</h3>
-          <span class="online-badge" id="onlineCount">8 ONLINE</span>
+          <span class="online-badge" id="onlineCount">9 ONLINE</span>
         </div>
         <div class="channel-list" id="channelList"></div>
       </div>
@@ -1742,14 +1742,15 @@ if(!isIOS){
 <script>
 // ====== CHANNELS DATA ======
 const CHANNELS = [
-  {id:'ajker-khela1',name:'Ajker Khela HD',ch:'Channel 1',cat:'Sports',icon:'⚽',viewers:'LIVE',src:'https://ua102.online24.pm:8443/1101/video.m3u8?token=350B326FB34F4B8'},
-  {id:'fifa-ch2',name:'FIFA World Cup',ch:'Channel 2',cat:'Sports',icon:'🏆',viewers:'LIVE',src:'https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8'},
-  {id:'fifa-ch3',name:'FIFA World Cup',ch:'Channel 3',cat:'Sports',icon:'🏆',viewers:'LIVE',src:'https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8'},
-  {id:'fifa-ch4',name:'FIFA World Cup',ch:'Channel 4',cat:'Sports',icon:'🏆',viewers:'LIVE',src:'https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8'},
-  {id:'btv',name:'BTV',ch:'Channel 5',cat:'General',icon:'🇧🇩',viewers:'LIVE',src:'https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8'},
-  {id:'fifaplus1',name:'FIFA+ (720p)',ch:'Channel 6',cat:'Sports',icon:'📺',viewers:'LIVE',src:'https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8'},
-  {id:'fifaplus2',name:'FIFA+ United States (720p)',ch:'Channel 7',cat:'Sports',icon:'🇺🇸',viewers:'LIVE',src:'https://d2w9q46ikgrcwx.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-of5cbk3sav3w5/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8'},
-  {id:'fifaplus3',name:'FIFA+ English (720p)',ch:'Channel 8',cat:'Sports',icon:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',viewers:'LIVE',src:'https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8'},
+  {id:'toffee-wc',name:'Toffee World Cup',ch:'Channel 1',cat:'Sports',icon:'📡',viewers:'LIVE',src:'https://sm-monirul.top/tof/live/toffee6/index.m3u8'},
+  {id:'bioscope-fifa',name:'Bioscope+ FIFA',ch:'Channel 2',cat:'Sports',icon:'📡',viewers:'LIVE',src:'https://d1kep4defqj6r1.cloudfront.net/out/v1/4e21d5a122c549289dd6feab259266e8/index_1.m3u8'},
+  {id:'korra-city',name:'Korra City HD',ch:'Channel 3',cat:'Sports',icon:'⚽',viewers:'LIVE',src:'https://ex.moorarts.xyz/diluoe1_720/index.m3u8'},
+  {id:'fox26',name:'Fox 26 Sports',ch:'Channel 4',cat:'Sports',icon:'🦊',viewers:'LIVE',src:'https://pub-098b280041274cf5929f5e19cfc8ac67.r2.dev/en1/index.m3u8'},
+  {id:'somoy-fifa',name:'Somoy TV FIFA',ch:'Channel 5',cat:'Sports',icon:'🇧🇩',viewers:'LIVE',src:'https://s1.itcnbd.live/1-somoy-tv/tracks-v1a1/mono.m3u8'},
+  {id:'united8',name:'United Sports',ch:'Channel 6',cat:'Sports',icon:'🏟️',viewers:'LIVE',src:'https://s1.itcnbd.live/united-sports-2/tracks-v1a1/mono.m3u8'},
+  {id:'ajker-khela1',name:'Ajker Khela HD',ch:'Channel 7',cat:'Sports',icon:'⚽',viewers:'LIVE',src:'https://ua102.online24.pm:8443/1101/video.m3u8?token=350B326FB34F4B8'},
+  {id:'btv',name:'BTV',ch:'Channel 8',cat:'General',icon:'🇧🇩',viewers:'LIVE',src:'https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8'},
+  {id:'fifaplus1',name:'FIFA+ (720p)',ch:'Channel 9',cat:'Sports',icon:'📺',viewers:'LIVE',src:'https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8'},
 ];
 
 // On mobile/iOS, DASH+DRM (Shaka) doesn't work — default to first HLS channel
