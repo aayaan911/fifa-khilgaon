@@ -1879,10 +1879,10 @@ const SCHEDULE = {
   '2026-06-28':[
     {home:'Panama',away:'England',score:'0 - 2',status:'FT',stage:'Group L',venue:'NRG Stadium, Houston'},
     {home:'Croatia',away:'Ghana',score:'2 - 1',status:'FT',stage:'Group L',venue:'Lumen Field, Seattle'},
-    {home:'Colombia',away:'Portugal',time:'05:00 AM',et:'7:00 PM ET (Jun 27)',stage:'Group K',venue:'Hard Rock Stadium, Miami'},
-    {home:'DR Congo',away:'Uzbekistan',time:'05:00 AM',et:'7:00 PM ET (Jun 27)',stage:'Group K',venue:'GEODIS Park, Nashville'},
-    {home:'Algeria',away:'Austria',time:'08:00 AM',et:'10:00 PM ET (Jun 27)',stage:'Group J',venue:'Lincoln Financial Field, Philadelphia'},
-    {home:'Jordan',away:'Argentina',time:'08:00 AM',et:'10:00 PM ET (Jun 27)',stage:'Group J',venue:'MetLife Stadium, New York'},
+    {home:'Colombia',away:'Portugal',score:'0 - 0',status:'FT',stage:'Group K',venue:'Hard Rock Stadium, Miami'},
+    {home:'DR Congo',away:'Uzbekistan',score:'3 - 1',status:'FT',stage:'Group K',venue:'GEODIS Park, Nashville'},
+    {home:'Algeria',away:'Austria',score:'3 - 3',status:'FT',stage:'Group J',venue:'Lincoln Financial Field, Philadelphia'},
+    {home:'Jordan',away:'Argentina',score:'1 - 3',status:'FT',stage:'Group J',venue:'MetLife Stadium, New York'},
   ],
   // === ROUND OF 32 ===
   '2026-06-29':[
@@ -2778,15 +2778,15 @@ const MATCHES=[
 {id:56,grp:'J',md:1,date:'2026-06-17',et:'00:00',home:'Austria',away:'Jordan',stadium:"Levi's Stadium",city:'San Francisco, USA',hs:3,as:1,st:'FT'},
 {id:57,grp:'J',md:2,date:'2026-06-22',et:'13:00',home:'Argentina',away:'Austria',stadium:'AT&T Stadium',city:'Dallas, USA',hs:2,as:0,st:'FT'},
 {id:58,grp:'J',md:2,date:'2026-06-22',et:'23:00',home:'Jordan',away:'Algeria',stadium:"Levi's Stadium",city:'San Francisco, USA',hs:1,as:2,st:'FT'},
-{id:59,grp:'J',md:3,date:'2026-06-27',et:'22:00',home:'Algeria',away:'Austria',stadium:'Arrowhead Stadium',city:'Kansas City, USA',hs:null,as:null,st:'SCHEDULED'},
-{id:60,grp:'J',md:3,date:'2026-06-27',et:'22:00',home:'Jordan',away:'Argentina',stadium:'AT&T Stadium',city:'Dallas, USA',hs:null,as:null,st:'SCHEDULED'},
+{id:59,grp:'J',md:3,date:'2026-06-27',et:'22:00',home:'Algeria',away:'Austria',stadium:'Arrowhead Stadium',city:'Kansas City, USA',hs:3,as:3,st:'FT'},
+{id:60,grp:'J',md:3,date:'2026-06-27',et:'22:00',home:'Jordan',away:'Argentina',stadium:'AT&T Stadium',city:'Dallas, USA',hs:1,as:3,st:'FT'},
 // GROUP K
 {id:61,grp:'K',md:1,date:'2026-06-17',et:'13:00',home:'Portugal',away:'DR Congo',stadium:'NRG Stadium',city:'Houston, USA',hs:1,as:1,st:'FT'},
 {id:62,grp:'K',md:1,date:'2026-06-17',et:'22:00',home:'Uzbekistan',away:'Colombia',stadium:'Estadio Azteca',city:'Mexico City, MEX',hs:1,as:3,st:'FT'},
 {id:63,grp:'K',md:2,date:'2026-06-23',et:'13:00',home:'Portugal',away:'Uzbekistan',stadium:'NRG Stadium',city:'Houston, USA',hs:5,as:0,st:'FT'},
 {id:64,grp:'K',md:2,date:'2026-06-23',et:'22:00',home:'Colombia',away:'DR Congo',stadium:'Estadio Akron',city:'Guadalajara, MEX',hs:1,as:0,st:'FT'},
-{id:65,grp:'K',md:3,date:'2026-06-27',et:'19:30',home:'Colombia',away:'Portugal',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:null,as:null,st:'SCHEDULED'},
-{id:66,grp:'K',md:3,date:'2026-06-27',et:'19:30',home:'DR Congo',away:'Uzbekistan',stadium:'Mercedes-Benz Stadium',city:'Atlanta, USA',hs:null,as:null,st:'SCHEDULED'},
+{id:65,grp:'K',md:3,date:'2026-06-27',et:'19:30',home:'Colombia',away:'Portugal',stadium:'Hard Rock Stadium',city:'Miami, USA',hs:0,as:0,st:'FT'},
+{id:66,grp:'K',md:3,date:'2026-06-27',et:'19:30',home:'DR Congo',away:'Uzbekistan',stadium:'Mercedes-Benz Stadium',city:'Atlanta, USA',hs:3,as:1,st:'FT'},
 // GROUP L
 {id:67,grp:'L',md:1,date:'2026-06-17',et:'16:00',home:'England',away:'Croatia',stadium:'AT&T Stadium',city:'Dallas, USA',hs:4,as:2,st:'FT'},
 {id:68,grp:'L',md:1,date:'2026-06-17',et:'19:00',home:'Ghana',away:'Panama',stadium:'BMO Field',city:'Toronto, CAN',hs:1,as:0,st:'FT'},
@@ -3061,8 +3061,8 @@ const STANDINGS={
   G:{teams:[{n:'Belgium 🇧🇪',p:3,w:1,d:2,l:0,gd:4,pts:5},{n:'Egypt 🇪🇬',p:3,w:1,d:2,l:0,gd:2,pts:5},{n:'Iran 🇮🇷',p:3,w:0,d:3,l:0,gd:0,pts:3},{n:'New Zealand 🇳🇿',p:3,w:0,d:1,l:2,gd:-6,pts:1}]},
   H:{teams:[{n:'Spain 🇪🇸',p:3,w:2,d:1,l:0,gd:5,pts:7},{n:'Cape Verde 🇨🇻',p:3,w:0,d:3,l:0,gd:0,pts:3},{n:'Uruguay 🇺🇾',p:3,w:0,d:2,l:1,gd:-1,pts:2},{n:'Saudi Arabia 🇸🇦',p:3,w:0,d:2,l:1,gd:-4,pts:2}]},
   I:{teams:[{n:'France 🇫🇷',p:3,w:3,d:0,l:0,gd:8,pts:9},{n:'Norway 🇳🇴',p:3,w:2,d:0,l:1,gd:1,pts:6},{n:'Senegal 🇸🇳',p:3,w:1,d:0,l:2,gd:2,pts:3},{n:'Iraq 🇮🇶',p:3,w:0,d:0,l:3,gd:-11,pts:0}]},
-  J:{teams:[{n:'Argentina 🇦🇷',p:2,w:2,d:0,l:0,gd:5,pts:6},{n:'Austria 🇦🇹',p:2,w:1,d:0,l:1,gd:0,pts:3},{n:'Algeria 🇩🇿',p:2,w:1,d:0,l:1,gd:-2,pts:3},{n:'Jordan 🇯🇴',p:2,w:0,d:0,l:2,gd:-3,pts:0}]},
-  K:{teams:[{n:'Colombia 🇨🇴',p:2,w:2,d:0,l:0,gd:3,pts:6},{n:'Portugal 🇵🇹',p:2,w:1,d:1,l:0,gd:5,pts:4},{n:'DR Congo 🇨🇩',p:2,w:0,d:1,l:1,gd:-1,pts:1},{n:'Uzbekistan 🇺🇿',p:2,w:0,d:0,l:2,gd:-7,pts:0}]},
+  J:{teams:[{n:'Argentina 🇦🇷',p:3,w:3,d:0,l:0,gd:7,pts:9},{n:'Austria 🇦🇹',p:3,w:1,d:1,l:1,gd:0,pts:4},{n:'Algeria 🇩🇿',p:3,w:1,d:1,l:1,gd:-2,pts:4},{n:'Jordan 🇯🇴',p:3,w:0,d:0,l:3,gd:-5,pts:0}]},
+  K:{teams:[{n:'Colombia 🇨🇴',p:3,w:2,d:1,l:0,gd:3,pts:7},{n:'Portugal 🇵🇹',p:3,w:1,d:2,l:0,gd:5,pts:5},{n:'DR Congo 🇨🇩',p:3,w:1,d:1,l:1,gd:1,pts:4},{n:'Uzbekistan 🇺🇿',p:3,w:0,d:0,l:3,gd:-9,pts:0}]},
   L:{teams:[{n:'England 🏴󠁧󠁢󠁥󠁮󠁧󠁿',p:3,w:2,d:1,l:0,gd:4,pts:7},{n:'Croatia 🇭🇷',p:3,w:2,d:0,l:1,gd:0,pts:6},{n:'Ghana 🇬🇭',p:3,w:1,d:1,l:1,gd:0,pts:4},{n:'Panama 🇵🇦',p:3,w:0,d:0,l:3,gd:-4,pts:0}]},
 };
 
